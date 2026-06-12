@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/*
+  EkoSolar — estetyka „solar print”:
+  kremowy papier, atramentowa zieleń, słoneczny żółty jako marker,
+  twarde offsetowe cienie i grube obrysy zamiast soft-glow.
+*/
+
+@theme {
+  --color-paper: #faf5e9;
+  --color-paper-deep: #f3ead3;
+  --color-ink: #16291a;
+  --color-pine: #1d5c33;
+  --color-moss: #3a7a4c;
+  --color-sun: #ffc93c;
+  --color-sun-deep: #f0a818;
+  --color-clay: #d9531e;
+  --color-cream: #fffdf6;
+
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-archivo);
+
+  --shadow-hard: 4px 4px 0 0 var(--color-ink);
+  --shadow-hard-sm: 3px 3px 0 0 var(--color-ink);
+  --shadow-hard-lg: 8px 8px 0 0 var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+/* Zakreślacz — podświetlenie kluczowych słów jak markerem */
+@utility mark-sun {
+  background: linear-gradient(
+    104deg,
+    transparent 0.5%,
+    var(--color-sun) 2.5%,
+    var(--color-sun) 97%,
+    transparent 99%
+  );
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-inline: 0.12em;
+}
+
+/* Karta drukarska: gruby obrys + twardy cień */
+@utility card-print {
+  border: 2px solid var(--color-ink);
+  background: var(--color-cream);
+  box-shadow: var(--shadow-hard);
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 2px solid var(--color-ink);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-hard-sm);
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+  cursor: pointer;
+}
+
+@utility btn-press {
+  &:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 0 var(--color-ink);
+  }
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-press:hover,
+  .btn-press:active {
+    transform: none;
+  }
+}
+
+/* Liczby w wyróżnikach zawsze tabelaryczne */
+@utility nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Kreskowana linia „przepływu energii” */
+@utility dash-line {
+  background-image: linear-gradient(
+    to right,
+    var(--color-ink) 55%,
+    transparent 45%
+  );
+  background-size: 14px 2px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* Suwak kalkulatora */
+input[type="range"].slider-sun {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-sun) 0%,
+    var(--color-sun) var(--fill, 50%),
+    var(--color-cream) var(--fill, 50%),
+    var(--color-cream) 100%
+  );
+  outline-offset: 4px;
+}
+
+input[type="range"].slider-sun::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--color-sun);
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0 0 var(--color-ink);
+  cursor: grab;
+}
+
+input[type="range"].slider-sun::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--color-sun);
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0 0 var(--color-ink);
+  cursor: grab;
+}
+
+input[type="range"].slider-sun:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+
+/* Pola formularzy */
+@utility field-print {
+  width: 100%;
+  border: 2px solid var(--color-ink);
+  background: var(--color-cream);
+  padding: 0.7rem 0.9rem;
+  font-size: 1rem;
+  &::placeholder {
+    color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+  }
+  &:focus-visible {
+    outline: 3px solid var(--color-sun-deep);
+    outline-offset: 2px;
+  }
+}
