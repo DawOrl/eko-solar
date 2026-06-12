@@ -23,7 +23,7 @@ export default function Process() {
               <Reveal delay={i * 0.1} className="flex w-full">
                 <div className="card-print flex w-full flex-col p-5">
                   <span
-                    className="nums inline-flex h-14 w-14 items-center justify-center rounded-full border-2 border-ink bg-sun font-display text-2xl font-extrabold shadow-[3px_3px_0_0_var(--color-ink)]"
+                    className="nums inline-flex h-14 w-14 items-center justify-center rounded-full border-2 border-ink bg-sun font-display text-2xl font-extrabold shadow-hard-sm"
                     aria-hidden
                   >
                     {step.no}

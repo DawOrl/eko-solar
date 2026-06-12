@@ -14,11 +14,11 @@ export default function Faq() {
         <div className="mt-10 space-y-4">
           {faq.items.map((item, i) => (
             <Reveal key={item.q} delay={Math.min(i * 0.05, 0.2)}>
-              <details className="card-print group">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-display text-lg font-bold [&::-webkit-details-marker]:hidden">
+              <details className="card-print faq-anim group">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-display text-lg font-bold transition-colors duration-200 hover:bg-paper motion-reduce:transition-none [&::-webkit-details-marker]:hidden">
                   {item.q}
                   <span
-                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center border-2 border-ink bg-sun text-xl font-extrabold transition-transform group-open:rotate-45 motion-reduce:transition-none"
+                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center border-2 border-ink bg-sun text-xl font-extrabold transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
                     aria-hidden
                   >
                     +

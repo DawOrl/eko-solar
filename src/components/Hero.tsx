@@ -6,7 +6,7 @@ export default function Hero() {
     <section id="hero" className="overflow-x-clip border-b-2 border-ink bg-paper">
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-14 lg:py-20">
         <div>
-          <p className="mb-4 inline-block border-2 border-ink bg-cream px-3 py-1 text-sm font-bold shadow-[3px_3px_0_0_var(--color-ink)]">
+          <p className="mb-4 inline-block border-2 border-ink bg-cream px-3 py-1 text-sm font-bold shadow-hard-sm">
             {hero.kicker}
           </p>
           <h1 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
@@ -37,7 +37,7 @@ export default function Hero() {
         </div>
 
         <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-          <div className="rotate-[1.5deg] border-2 border-ink bg-cream p-2.5 shadow-[8px_8px_0_0_var(--color-ink)]">
+          <div className="rotate-[1.5deg] border-2 border-ink bg-cream p-2.5 shadow-hard-lg">
             <Image
               src={hero.image.src}
               alt={hero.image.alt}
@@ -45,11 +45,11 @@ export default function Hero() {
               height={560}
               priority
               sizes="(min-width: 1024px) 45vw, (min-width: 640px) 32rem, 100vw"
-              className="aspect-[4/3] w-full border-2 border-ink object-cover"
+              className="aspect-4/3 w-full border-2 border-ink object-cover"
             />
           </div>
           <p
-            className="absolute -top-4 -right-2 rotate-[5deg] border-2 border-ink bg-sun px-4 py-2 font-display text-lg font-extrabold shadow-[3px_3px_0_0_var(--color-ink)] sm:-right-4"
+            className="sticker-float absolute -top-4 -right-2 rotate-[5deg] border-2 border-ink bg-sun px-4 py-2 font-display text-lg font-extrabold shadow-hard-sm sm:-right-4"
             aria-hidden
           >
             {hero.sticker}

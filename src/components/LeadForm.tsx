@@ -89,7 +89,7 @@ export default function LeadForm() {
               role="status"
               aria-live="polite"
             >
-              <p className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full border-2 border-ink bg-sun text-3xl shadow-[3px_3px_0_0_var(--color-ink)]" aria-hidden>
+              <p className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full border-2 border-ink bg-sun text-3xl shadow-hard-sm" aria-hidden>
                 ✓
               </p>
               <h3 className="mt-5 font-display text-2xl font-extrabold sm:text-3xl">

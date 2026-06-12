@@ -24,7 +24,7 @@ export default function SectionHeading({
           className={`nums inline-flex h-8 w-8 items-center justify-center border-2 ${
             inverted
               ? "border-sun text-sun"
-              : "border-ink bg-sun text-ink shadow-[2px_2px_0_0_var(--color-ink)]"
+              : "border-ink bg-sun text-ink shadow-hard-xs"
           }`}
           aria-hidden
         >

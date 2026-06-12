@@ -15,18 +15,18 @@ export default function Realizations() {
           {realizations.items.map((item, i) => (
             <li key={item.location}>
               <Reveal delay={(i % 2) * 0.08} className="h-full">
-                <article className="card-print flex h-full flex-col overflow-hidden">
-                  <div className="relative border-b-2 border-ink">
+                <article className="card-print group flex h-full flex-col overflow-hidden">
+                  <div className="relative overflow-hidden border-b-2 border-ink">
                     <Image
                       src={item.image.src}
                       alt={item.image.alt}
                       width={640}
                       height={420}
                       sizes="(min-width: 640px) 50vw, 100vw"
-                      className="aspect-[3/2] w-full object-cover"
+                      className="aspect-3/2 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                     <p
-                      className="nums absolute top-3 left-3 -rotate-2 border-2 border-ink bg-sun px-3 py-1 font-display font-extrabold shadow-[2px_2px_0_0_var(--color-ink)]"
+                      className="nums absolute top-3 left-3 -rotate-2 border-2 border-ink bg-sun px-3 py-1 font-display font-extrabold shadow-hard-xs"
                     >
                       {item.power}
                     </p>

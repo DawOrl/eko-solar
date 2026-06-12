@@ -15,7 +15,7 @@ export default function Grants() {
           {grants.items.map((grant, i) => (
             <li key={grant.name}>
               <Reveal delay={i * 0.1} className="h-full">
-                <div className="flex h-full flex-col border-2 border-sun bg-ink p-6 shadow-[4px_4px_0_0_var(--color-sun)]">
+                <div className="flex h-full flex-col border-2 border-sun bg-ink p-6 shadow-hard-sun">
                   <p className="nums font-display text-3xl font-extrabold text-sun">
                     {grant.amount}
                   </p>

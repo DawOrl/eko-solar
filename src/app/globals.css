@@ -21,8 +21,10 @@
   --font-sans: var(--font-archivo);
 
   --shadow-hard: 4px 4px 0 0 var(--color-ink);
+  --shadow-hard-xs: 2px 2px 0 0 var(--color-ink);
   --shadow-hard-sm: 3px 3px 0 0 var(--color-ink);
   --shadow-hard-lg: 8px 8px 0 0 var(--color-ink);
+  --shadow-hard-sun: 4px 4px 0 0 var(--color-sun);
 }
 
 html {
@@ -148,6 +150,16 @@ input[type="range"].slider-sun::-webkit-slider-thumb {
   cursor: grab;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  input[type="range"].slider-sun::-webkit-slider-thumb {
+    transition: transform 150ms ease;
+  }
+  input[type="range"].slider-sun:hover::-webkit-slider-thumb,
+  input[type="range"].slider-sun:focus-visible::-webkit-slider-thumb {
+    transform: scale(1.12);
+  }
+}
+
 input[type="range"].slider-sun::-moz-range-thumb {
   width: 28px;
   height: 28px;
@@ -160,6 +172,46 @@ input[type="range"].slider-sun::-moz-range-thumb {
 
 input[type="range"].slider-sun:active::-webkit-slider-thumb {
   cursor: grabbing;
+}
+
+/* Płynne rozwijanie FAQ — progressive enhancement (Chrome 131+/nowe przeglądarki);
+   tam, gdzie ::details-content nie jest wspierane, details otwiera się skokowo. */
+details.faq-anim {
+  interpolate-size: allow-keywords;
+}
+
+details.faq-anim::details-content {
+  block-size: 0;
+  overflow-y: clip;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  details.faq-anim::details-content {
+    transition:
+      block-size 300ms ease,
+      content-visibility 300ms allow-discrete;
+  }
+}
+
+details.faq-anim[open]::details-content {
+  block-size: auto;
+}
+
+/* Pływająca naklejka (hero) */
+@keyframes float-tilt {
+  0%,
+  100% {
+    transform: rotate(5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(7deg) translateY(-7px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sticker-float {
+    animation: float-tilt 4.5s ease-in-out infinite;
+  }
 }
 
 /* Pola formularzy */

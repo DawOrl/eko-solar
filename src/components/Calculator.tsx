@@ -1,12 +1,35 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { motion, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import { calculator } from "@/data/content";
 import { emitBill } from "@/lib/bill-bridge";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
 const plnFormat = new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 });
+
+/** Wynik kalkulatora goni wartość sprężyście zamiast skakać. */
+function SpringNumber({
+  value,
+  format,
+}: {
+  value: number;
+  format: (v: number) => string;
+}) {
+  const reduceMotion = useReducedMotion();
+  const spring = useSpring(value, { stiffness: 170, damping: 26 });
+  const text = useTransform(spring, (v) => format(v));
+
+  useEffect(() => {
+    spring.set(value);
+  }, [value, spring]);
+
+  if (reduceMotion) {
+    return <span>{format(value)}</span>;
+  }
+  return <motion.span>{text}</motion.span>;
+}
 
 export default function Calculator() {
   const [bill, setBill] = useState<number>(calculator.defaultBill);
@@ -65,7 +88,11 @@ export default function Calculator() {
                     Oszczędzasz rocznie do
                   </dt>
                   <dd className="nums font-display text-4xl font-extrabold text-pine sm:text-5xl">
-                    {plnFormat.format(result.yearlySavings)} zł
+                    <SpringNumber
+                      value={result.yearlySavings}
+                      format={(v) => plnFormat.format(Math.round(v / 100) * 100)}
+                    />{" "}
+                    zł
                   </dd>
                 </div>
                 <div>
@@ -73,7 +100,11 @@ export default function Calculator() {
                     Dobrana moc
                   </dt>
                   <dd className="nums font-display text-2xl font-extrabold">
-                    {result.power.toString().replace(".", ",")} kWp
+                    <SpringNumber
+                      value={result.power}
+                      format={(v) => (Math.round(v * 2) / 2).toString().replace(".", ",")}
+                    />{" "}
+                    kWp
                   </dd>
                 </div>
                 <div>
@@ -81,7 +112,12 @@ export default function Calculator() {
                     Zwrot z dotacją
                   </dt>
                   <dd className="nums font-display text-2xl font-extrabold">
-                    ~{result.paybackYears.toString().replace(".", ",")} lat
+                    ~
+                    <SpringNumber
+                      value={result.paybackYears}
+                      format={(v) => ((Math.round(v * 10) / 10).toFixed(1)).replace(".", ",")}
+                    />{" "}
+                    lat
                   </dd>
                 </div>
               </dl>

@@ -1,4 +1,5 @@
 import { trust } from "@/data/content";
+import CountUp from "./CountUp";
 
 /** Pasek zaufania: odwrócony pasek atramentowy z dużymi liczbami. */
 export default function TrustBar() {
@@ -16,7 +17,7 @@ export default function TrustBar() {
           >
             <dt className="order-2 text-sm text-paper/70">{stat.label}</dt>
             <dd className="nums order-1 font-display text-3xl font-extrabold text-sun sm:text-4xl">
-              {stat.value}
+              <CountUp value={stat.value} />
             </dd>
           </div>
         ))}
